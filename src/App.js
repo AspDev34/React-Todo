@@ -27,14 +27,42 @@ class App extends React.Component {
   }
 
   // Class methods to update state
-  
+  // no mutating the current state
+  // for every array and every object - create a new one (... a.k.a. spread operator or array methods)
+  toggleItem = (clickedID) => {
+    const newItem = this.state.todoData.map((item) => {
+      // loop through the myTodos array 
+      // find the item we clicked (by id, maybe index)
+      // toggle that item's "completed" property.
+      if (item.id === clickedID) {
+        // toggle completed
+        return {
+          ...myTodos,
+          completed: !item.completed
+        };
+      }
+      else {
+        return item;
+      }
+
+    });
+
+    // Update state with the new array (using setState())
+    // I ALWAYS pass in an object to setState. 
+    // I don't have to spread in the current state (...myTodos), React does this in the background. I only have to pass in the
+    // state property I want to update. 
+    this.setState({
+      completed: newItem
+    });
+  };
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoForm />
 
-        <TodoList todos={this.state.todoData}/>
+        <TodoList todos={this.state.todoData} toggleItem={this.toggleItem}/>
       </div>
     );
   }
