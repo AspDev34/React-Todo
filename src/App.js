@@ -5,21 +5,6 @@ const myTodos = [
     task: 'Study Code',
     id: Date.now(),
     completed: false
-  },
-  {
-    task: 'Go to the gym',
-    id: Date.now(),
-    completed: false
-  },
-  {
-      task: 'Learn to play piano',
-      id: Date.now(),
-      completed: false
-  },
-  {
-      task: 'Play with the kids',
-      id: Date.now(),
-      completed: false
   }
 ];
 
@@ -40,6 +25,9 @@ class App extends React.Component {
       todoData: myTodos 
     }; 
   }
+
+  // Class methods to update state
+  
   render() {
     return (
       <div>
