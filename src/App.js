@@ -3,13 +3,13 @@ import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 
 
-const myTodos = [
-  {
-    task: 'Study Code',
-    id: Date.now(),
-    completed: false
-  }
-];
+// const myTodos = [
+//   {
+//     task: 'Study Code',
+//     id: Date.now(),
+//     completed: false
+//   }
+// ];
 
 class App extends React.Component {
   // React.Component is what we’ll be extending as our base class for class components.
@@ -25,8 +25,8 @@ class App extends React.Component {
   constructor() {
     super(); // we call Super to choose what specifically we want to inherit from React.Component
     this.state = { // state inside a class component is always going to be an object. 
-      todoData: myTodos 
-    }; 
+      todoData: []
+    };
   }
 
   // Class methods to update state
@@ -43,21 +43,23 @@ class App extends React.Component {
           ...item,
           completed: !item.completed
         };
-      }
-      else {
-        return item;
-      }
+      } return item
+      // else {
+      //   return item;
+      // }
 
-    });
+    })
 
-    // Update state with the new array (using setState())
-    // I ALWAYS pass in an object to setState. 
-    // I don't have to spread in the current state (...myTodos), React does this in the background. I only have to pass in the
-    // state property I want to update. 
     this.setState({
-      completed: newItem
-    });
+      todoData: newItem
+    })
   };
+
+  // Update state with the new array (using setState())
+  // I ALWAYS pass in an object to setState. 
+  // I don't have to spread in the current state (...myTodos), React does this in the background. I only have to pass in the
+  // state property I want to update. 
+
 
   addNewTask = itemTask => {
     const newTask = {
@@ -71,6 +73,7 @@ class App extends React.Component {
   };
 
   clearTask = () => {
+    console.log("DATA", this.state.todoData)
     this.setState({
       todoData: this.state.todoData.filter(item => !item.completed)
     })
@@ -80,9 +83,9 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm addNewTask={this.addNewTask} clearTask={this.clearTask}/>
+        <TodoForm addNewTask={this.addNewTask} clearTask={this.clearTask} />
 
-        <TodoList todos={this.state.todoData} toggleItem={this.toggleItem}/>
+        <TodoList todos={this.state.todoData} toggleItem={this.toggleItem} />
       </div>
     );
   }
