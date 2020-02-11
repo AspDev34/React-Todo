@@ -2,6 +2,7 @@ import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 
+
 const myTodos = [
   {
     task: 'Study Code',
@@ -39,7 +40,7 @@ class App extends React.Component {
       if (item.id === clickedID) {
         // toggle completed
         return {
-          ...myTodos,
+          ...item,
           completed: !item.completed
         };
       }
